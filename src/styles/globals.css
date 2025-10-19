@@ -1,3 +1,25 @@
+@import url(https://db.onlinewebfonts.com/c/54f4891696ad7a79999d5e22d33672f0?family=DIN+Next+Slab+Pro);
+@import url(https://db.onlinewebfonts.com/c/a1b90f9d9fea69990dc094bf04d60683?family=DIN+Next+Slab+W04+Light);
+@font-face {
+    font-family: "DIN Next Slab Pro";
+    src: url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.eot");
+    src: url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/54f4891696ad7a79999d5e22d33672f0.svg#DIN Next Slab Pro")format("svg");
+}
+
+@font-face {
+    font-family: "DIN Next Slab W04 Light";
+    src: url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.eot");
+    src: url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.eot?#iefix")format("embedded-opentype"),
+    url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.woff2")format("woff2"),
+    url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.woff")format("woff"),
+    url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.ttf")format("truetype"),
+    url("https://db.onlinewebfonts.com/t/a1b90f9d9fea69990dc094bf04d60683.svg#DIN Next Slab W04 Light")format("svg");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
