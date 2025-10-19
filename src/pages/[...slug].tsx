@@ -27,7 +27,7 @@ export async function getStaticProps({ params }: any) {
 
 function CatchAllPage() {
 
-  const { proyecto, canal } = useAppContext();
+  const { proyecto, canal, token, semilla } = useAppContext();
 
   const urlGeneration = () => {
     return `/${proyecto}/step1`
@@ -54,6 +54,21 @@ function CatchAllPage() {
               <li className={styles.fontBold}>
                 Canal <code className='font-light'>{canal}</code>
               </li>
+              {
+                token && (
+                  <li className={styles.fontBold}>
+                    Token <code className='font-light'>{token}</code>
+                  </li>
+                )
+              }
+
+               {
+                semilla && (
+                  <li className={styles.fontBold}>
+                    Semilla <code className='font-light'>{semilla}</code>
+                  </li>
+                )
+              }
             </ol>
           ) : (
             <>

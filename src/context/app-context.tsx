@@ -4,8 +4,12 @@ import { createContext, useContext, useState, useEffect, ReactNode } from "react
 interface AppContextType {
   proyecto: string | null;
   canal: string | null;
+  token : string | null;
+  semilla : string | null;
   setProyecto: (value: string | null) => void;
   setCanal: (value: string | null) => void;
+  setToken : (value: string | null) => void;
+  setSemilla: (value: string | null) => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -13,9 +17,11 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const AppProvider = ({ children }: { children: ReactNode }) => {
   const [proyecto, setProyecto] = useState<string | null>(null);
   const [canal, setCanal] = useState<string | null>(null);
+  const [token, setToken] = useState<string | null>(null);
+  const [semilla, setSemilla] = useState<string | null>(null);
 
   return (
-    <AppContext.Provider value={{ proyecto, canal, setProyecto, setCanal }}>
+    <AppContext.Provider value={{ proyecto, canal, token, semilla, setProyecto, setCanal, setToken, setSemilla }}>
       {children}
     </AppContext.Provider>
   );

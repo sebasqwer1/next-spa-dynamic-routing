@@ -16,7 +16,7 @@ export default function Layout({ children }: LayoutProps) {
 
 
     const router = useRouter();
-    const { setProyecto, setCanal, proyecto } = useAppContext();
+    const { setProyecto, setCanal, proyecto, setToken, setSemilla, canal } = useAppContext();
 
     const slug = router.query.slug as string[] | undefined;
 
@@ -32,6 +32,13 @@ export default function Layout({ children }: LayoutProps) {
         };
 
         window.addEventListener("beforeunload", handleBeforeUnload);
+
+        
+
+        const { token, semilla } = router.query;
+
+        setToken(typeof token === "string" ? token : null);
+        setSemilla(typeof semilla === "string" ? semilla : null);
 
         if (router.pathname === "/") {
             setProyecto("desgravamen");
@@ -55,34 +62,47 @@ export default function Layout({ children }: LayoutProps) {
 
     return (
         <div className={styles.container}>
-            <header className={styles.header}>
-                <div
-                    style={{
-                        width: '100%',
-                        position: 'fixed',
-                        cursor: 'pointer', 
-                        display: 'flex', 
-                        paddingLeft: '30px', 
-                        justifyContent: 'left',
-                        height:'70px',
-                        alignItems:'center',
-                        background : 'white',
-                        boxShadow: '0 1px 20px rgba(0, 0, 0, 0.1)'
-                    }}>
-                        <Image
-                            src={logoBB}
-                            alt="logo-bb"
-                            width={200}
-                            height={25}
-                        />
-                    </div>
-            </header>
+
+            {
+                canal === "WEB" && (
+                    <header className={styles.header}>
+                        <div
+                            style={{
+                                width: '100%',
+                                position: 'fixed',
+                                cursor: 'pointer', 
+                                display: 'flex', 
+                                paddingLeft: '30px', 
+                                justifyContent: 'left',
+                                height:'70px',
+                                alignItems:'center',
+                                background : 'white',
+                                boxShadow: '0 1px 20px rgba(0, 0, 0, 0.1)'
+                            }}>
+                                <Image
+                                    src={logoBB}
+                                    alt="logo-bb"
+                                    width={200}
+                                    height={25}
+                                />
+                            </div>
+                    </header>
+                )
+            }
+
+            
 
             <main className={styles.main}>{children}</main>
 
-            <footer className={styles.footer}>
-                <p className={styles.fontBold}>© 2025 Mi Aplicación</p>
-            </footer>
+            {
+                canal === "WEB" && (
+                    <footer className={styles.footer}>
+                        <p className={styles.fontBold}>© 2025 Mi Aplicación</p>
+                    </footer>
+                )
+            }
+
+           
         </div>
     );
 }
