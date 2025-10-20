@@ -3,7 +3,7 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { withLayout } from '@/hook/withLayout';
 import { useAppContext } from "@/context/app-context";
-
+import { useConditionalRedirect } from "@/hook/useConditionalRedirect";
 
 export async function getStaticPaths() {
   return {
@@ -23,15 +23,20 @@ export async function getStaticProps({ params }: any) {
   };
 }
 
-
-
 function CatchAllPage() {
 
   const { proyecto, canal, token, semilla } = useAppContext();
 
+  const { checking } = useConditionalRedirect([
+    { condition: canal === "IBK", target: `/${proyecto}/step3` },
+  ]);
+
   const urlGeneration = () => {
     return `/${proyecto}/step1`
   }
+
+
+  if (checking) { return <p>Cargando ...</p> }
 
   return (
   

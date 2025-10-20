@@ -40,6 +40,7 @@ export default function Layout({ children }: LayoutProps) {
         setToken(typeof token === "string" ? token : null);
         setSemilla(typeof semilla === "string" ? semilla : null);
 
+        // DEFINIMOS LA RUTA DE INICIO
         if (router.pathname === "/") {
             setProyecto("desgravamen");
             setCanal("WEB");
