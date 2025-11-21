@@ -1,9 +1,6 @@
 import { ReactNode } from "react";
 import styles from "./layout.module.css"; // crea tus estilos aquí
 import Image from "next/image";
-
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import { useAppContext } from "@/context/app-context";
 
 interface LayoutProps {
@@ -14,52 +11,7 @@ import logoBB from "../../public/assets/images/logo-bb.png";
 
 export default function Layout({ children }: LayoutProps) {
 
-
-    const router = useRouter();
-    const { setProyecto, setCanal, proyecto, setToken, setSemilla, canal } = useAppContext();
-
-    const slug = router.query.slug as string[] | undefined;
-
-
-
-    useEffect(() => {
-
-        if (!router.isReady) return;
-
-        const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-            e.preventDefault();
-            e.returnValue = "";
-        };
-
-        window.addEventListener("beforeunload", handleBeforeUnload);
-
-        
-
-        const { token, semilla } = router.query;
-
-        setToken(typeof token === "string" ? token : null);
-        setSemilla(typeof semilla === "string" ? semilla : null);
-
-        // DEFINIMOS LA RUTA DE INICIO
-        if (router.pathname === "/") {
-            setProyecto("desgravamen");
-            setCanal("WEB");
-            router.replace("/desgravamen/WEB");
-            return;
-        }
-
-        if (proyecto == null && router.pathname !== "/[...slug]" && router.pathname !=="/error/404" ){
-            router.push("/")
-        }
-
-        if (typeof window !== "undefined" && slug && slug.length >= 2) {
-            setProyecto(slug[0]);
-            setCanal(slug[1]);
-        }
-
-        return () => window.removeEventListener("beforeunload", handleBeforeUnload);
-
-    }, [router.isReady]);
+    const { canal } = useAppContext();
 
     return (
         <div className={styles.container}>

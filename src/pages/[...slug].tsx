@@ -3,15 +3,16 @@ import Image from 'next/image';
 import styles from './page.module.css';
 import { withLayout } from '@/hook/withLayout';
 import { useAppContext } from "@/context/app-context";
-import { useConditionalRedirect } from "@/hook/useConditionalRedirect";
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 export async function getStaticPaths() {
   return {
     paths: [
-      { params: { slug: ["desgravamen", "IBK"] } },
-      { params: { slug: ["desgravamen", "WEB"] } },
-      { params: { slug: ["desgravamen", "WAP"] } },
-      { params: { slug: ["cuentas", "WEB"] } }
+      { params: { slug: ["degravamen"] } },
+      { params: { slug: ["proteccion"] } },
+      { params: { slug: ["estudiantil"] } },
+      { params: { slug: ["giros"] } }
     ],
     fallback: false,
   };
@@ -25,18 +26,33 @@ export async function getStaticProps({ params }: any) {
 
 function CatchAllPage() {
 
-  const { proyecto, canal, token, semilla } = useAppContext();
+  const { proyecto, canal, token, semilla, setCanal, setIsChannel, setProyecto } = useAppContext();
 
-  const { checking } = useConditionalRedirect([
-    { condition: canal === "IBK", target: `/${proyecto}/step3` },
-  ]);
+  // const { checking } = useConditionalRedirect([
+  //   { condition: canal === "IBK", target: `/${proyecto}/step3` },
+  // ]);
 
   const urlGeneration = () => {
     return `/${proyecto}/step1`
   }
 
+  
+  const router = useRouter();
 
-  if (checking) { return <p>Cargando ...</p> }
+  
+
+  useEffect(()=>{
+    const slug = router.query.slug as string[] | undefined;
+    setCanal("WEB")
+    setIsChannel(true)
+    if(slug){
+      setProyecto(slug[0])
+    }
+    
+  },[])
+
+
+  // if (checking) { return <p>Cargando ...</p> }
 
   return (
   
