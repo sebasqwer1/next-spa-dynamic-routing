@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <>
         {urls && (
           <AppProvider uri={urls}>
+            {urls}
             <Component {...pageProps} />
           </AppProvider>
         )}
